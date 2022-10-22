@@ -20,14 +20,14 @@ export function createToDo(
 ): Promise<TodoItem> {
   const userId = parseUserId(jwtToken)
   const todoId = uuid.v4()
-  //const bucketName = process.env.S3_BUCKET_NAME
+  const bucketName = process.env.S3_BUCKET_NAME
   const createdAt = new Date().getTime().toString()
   const done = false
 
   return toDoAccess.createToDo({
     userId: userId,
     todoId: todoId,
-    // attachmentUrl: `https://${bucketName}.s3.amazonaws.com/${todoId}`,
+    attachmentUrl: `https://${bucketName}.s3.amazonaws.com/${todoId}`,
     createdAt: createdAt,
     done: done,
     ...createTodoRequest
